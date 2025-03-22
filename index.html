@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Answer Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #FFF9EE;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.5s;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 249, 238, 0.5), rgba(255, 229, 180, 0.2));
+      z-index: -1;
+    }
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 40px;
+      font-weight: 400;
+      position: relative;
+    }
+    h1::before {
+      content: '🔮';
+      position: absolute;
+      top: -30px;
+      font-size: 30px;
+    }
+    p {
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px 40px;
+      /* بدون إطار (لا بيضاوي ولا مستطيل) */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Press Refresh to get an answer!</h1>
+  <p id="answer">Press Refresh</p>
+
+  <script>
+    const answers = [
+      { text: "Yes", color: "#CCFF99" },           // أخضر فاتح
+      { text: "No", color: "#FF9999" },            // أحمر فاتح
+      { text: "Maybe", color: "#99CCFF" },         // أزرق فاتح
+      { text: "Probably", color: "#FFCC99" },      // برتقالي فاتح
+      { text: "Not sure", color: "#D3D3D3" },      // رمادي فاتح
+      { text: "Definitely", color: "#CCFF99" },    // أخضر فاتح
+      { text: "Not now", color: "#FF9999" },       // أحمر فاتح
+      { text: "Perhaps", color: "#99CCFF" },       // أزرق فاتح
+      { text: "Absolutely", color: "#CCFF99" },    // أخضر فاتح
+      { text: "Ask later", color: "#D3D3D3" },     // رمادي فاتح
+      { text: "Yes, go for it!", color: "#CCFF99" }, // أخضر فاتح
+      { text: "No, wait", color: "#FF9999" },      // أحمر فاتح
+      { text: "Could be", color: "#99CCFF" },      // أزرق فاتح
+      { text: "Likely", color: "#FFCC99" },        // برتقالي فاتح
+      { text: "Try again", color: "#FFD700" },     // ذهبي فاتح
+      { text: "Yes, why not?", color: "#CCFF99" }, // أخضر فاتح
+      { text: "No, sorry", color: "#FF9999" },     // أحمر فاتح
+      { text: "Maybe, think about it", color: "#99CCFF" }, // أزرق فاتح
+      { text: "Sure thing!", color: "#CCFF99" },   // أخضر فاتح
+      { text: "Not clear yet", color: "#D3D3D3" }, // رمادي فاتح
+      { text: "Yes, perfect timing!", color: "#CCFF99" }, // أخضر فاتح
+      { text: "No, bad idea", color: "#FF9999" },  // أحمر فاتح
+      { text: "Possibly", color: "#99CCFF" },      // أزرق فاتح
+      { text: "Unlikely", color: "#FF9999" },      // أحمر فاتح
+      { text: "Press Refresh again", color: "#FFD700" }, // ذهبي فاتح
+      { text: "Yes, do it now!", color: "#CCFF99" }, // أخضر فاتح
+      { text: "No, hold on", color: "#FF9999" },   // أحمر فاتح
+      { text: "Maybe later", color: "#99CCFF" },   // أزرق فاتح
+      { text: "Totally!", color: "#CCFF99" },      // أخضر فاتح
+      { text: "Hard to tell", color: "#D3D3D3" },  // رمادي فاتح
+      { text: "Wow, you’re really curious! Keep going!", color: "#FFD700" } // ذهبي فاتح
+    ];
+
+    function getRandomAnswer() {
+      const randomIndex = Math.floor(Math.random() * answers.length);
+      const selectedAnswer = answers[randomIndex];
+      document.getElementById("answer").textContent = selectedAnswer.text;
+      document.body.style.backgroundColor = selectedAnswer.color;
+    }
+
+    window.onkeydown = function(event) {
+      if (event.key === "F5") getRandomAnswer();
+    };
+    document.addEventListener("click", getRandomAnswer);
+  </script>
+</body>
+</html>
