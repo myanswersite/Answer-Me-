@@ -29,34 +29,19 @@
       background: radial-gradient(circle, rgba(255, 249, 238, 0.5), rgba(255, 229, 180, 0.2));
       z-index: -1;
     }
-    h1 {
-      font-size: 24px;
-      color: #333;
-      margin-bottom: 40px;
-      font-weight: 400;
-      position: relative;
-    }
-    h1::before {
-      content: '🔮';
-      position: absolute;
-      top: -30px;
-      font-size: 30px;
-    }
     p {
-      font-size: 36px;
+      font-size: 24px; /* غيرت الخط ليصير أصغر (من 36px لـ 24px) */
       font-weight: 700;
       color: #fff;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 20px 40px;
-      /* بدون إطار (لا بيضاوي ولا مستطيل) */
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Press Refresh to get an answer!</h1>
-  <p id="answer">Press Refresh</p>
+  <p id="answer">Press here to get an answer</p> <!-- الرسالة التوجيهية بالإنجليزي -->
 
   <script>
     const answers = [
@@ -100,9 +85,15 @@
       document.body.style.backgroundColor = selectedAnswer.color;
     }
 
+    // لما يضغط F5 (Refresh)، يرجع للرسالة التوجيهية
     window.onkeydown = function(event) {
-      if (event.key === "F5") getRandomAnswer();
+      if (event.key === "F5") {
+        document.getElementById("answer").textContent = "Press here to get an answer";
+        document.body.style.backgroundColor = "#FFF9EE"; // يرجع للون الأصلي
+      }
     };
+
+    // عرض إجابة فقط عند الضغط على الشاشة
     document.addEventListener("click", getRandomAnswer);
   </script>
 </body>
